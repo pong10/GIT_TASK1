@@ -23,27 +23,36 @@ class Walk( Transportation ):
 
 class Taxi( Transportation ):
     
-    def __init__( self, start, end, distance ):
-        Transportation.__init__( self, start, end, distance)
+   def __init__( self, start, end, distance ):
+      Transportation.__init__( self, start, end, distance)
             
-            def find_cost( self ):
-                travel_cost = 10 * distance
-                return travel_cost
+   def find_cost( self ):
+      travel_cost = 40 * self.distance
+      return travel_cost
 
 
 class Train(Transportation):
-   def __init__(self,start,end,distance):
+   def __init__(self,start,end,distance,station):
+      self.station = station
+      Transportation.__init__( self, start, end, distance)
+   def find_cost(self):
+      travel_cost = 5 * self.station
+      return travel_cost
+
+
+
+
       
    
 # main program
 
 travel_cost = 0
 
-#trip = [ Walk("KMITL","KMITL SCB Bank",0.6),
-         #Taxi("KMITL SCB Bank","Ladkrabang Station",5),
-         #Train("Ladkrabang Station","Payathai Station",40,6),
-         #Taxi("Payathai Station","The British Council",3) ]
+trip = [ Walk("KMITL","KMITL SCB Bank",0.6),
+         Taxi("KMITL SCB Bank","Ladkrabang Station",5),
+         Train("Ladkrabang Station","Payathai Station",40,6),
+         Taxi("Payathai Station","The British Council",3) ]
 
 for travel in trip:
    travel_cost += travel.find_cost()
-print travel_cost
+print(travel_cost)
